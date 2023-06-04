@@ -2,19 +2,71 @@
 
 * {
   font-family: "Open Sans", sans-serif;
+  box-sizing: border-box;
 }
 
 html,
 body {
   margin: 0px;
   padding: 0px;
+  background: cornflowerblue;
 }
 
 #main {
   width: 100vw;
   height: 100vh;
+  margin: auto;
+}
+
+#pop-quiz {
+  margin: auto;
+  width: 80%;
+  min-width: 300px;
+  max-width: 600px;
+  text-align: center;
+  border: 2px solid black;
+}
+
+#navigate {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
+}
+
+#questions {
+  margin: 0 auto;
+}
+
+#question {
+  margin-bottom: 1rem;
+}
+
+.option {
+  border-radius: 5px;
+  font-size: 1em;
+  margin: 5px 0 15px;
+  padding: 9px;
+  cursor: pointer;
+  border: 2px solid #363;
+  /* border-width: 1px;
+  border-color: #bbb;
+  color: #333;
+  box-shadow: 0 2px 8px -5px; */
+}
+
+#num {
+  font-size: 1em;
+  margin: 5px 0 15px;
+  padding: 9px;
+}
+
+div.option:hover {
+  background: #090;
+  color: #000;
+}
+
+.hidden {
+  display: none;
+  visibility: hidden;
 }
