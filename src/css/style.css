@@ -24,13 +24,14 @@ body {
   min-width: 300px;
   max-width: 600px;
   text-align: center;
-  border: 2px solid black;
+  /* border: 2px solid black; */
 }
 
-#navigate {
+#navigate,
+#quit {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
 }
 
@@ -39,7 +40,7 @@ body {
 }
 
 #question {
-  margin-bottom: 1rem;
+  margin: 1rem;
 }
 
 .option {
