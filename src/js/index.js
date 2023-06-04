@@ -11,15 +11,12 @@ for (const key in data) {
   div.id = key;
   div.className = "option";
   if (Object.hasOwn(localStorage, key)) {
-    div.style.pointerEvents = "none";
-    div.innerHTML = `<s>${key.toUpperCase()}</s> <small>Score: ${localStorage.getItem(
-      key
-    )} / ${data[key].length}</small>`;
-    //score(key);
+    removePointerEvents(div);
+    showScore(div);
   } else {
     clearUnfinished(key);
     div.innerText = key.toUpperCase();
-    div.style.pointerEvents = "auto";
+    addPointerEvents(div);
   }
   topic.appendChild(div);
 }
@@ -27,13 +24,25 @@ for (const key in data) {
 function quesDisplay(id, index = 0) {
   localStorage.setItem("currentIndex", index);
 
+  if (index === 0) {
+    removePointerEvents(document.getElementById("prev"));
+  } else {
+    addPointerEvents(document.getElementById("prev"));
+  }
+
+  if (index === data[id].length - 1) {
+    removePointerEvents(document.getElementById("next"));
+  } else {
+    addPointerEvents(document.getElementById("next"));
+  }
+
   quiz.querySelector("h3").value = id;
   quiz.querySelector("h3").innerHTML = `<u>${id.toUpperCase()}</u>`;
   document.getElementById("num").innerText = `${index + 1} of ${
     data[id].length
   }`;
 
-  removeAllChildren(document.getElementById("questions"));
+  removeAllChildren(questions);
   const question = document.createElement("div");
   question.innerText = data[id][index].question;
   question.id = "question";
@@ -45,12 +54,16 @@ function quesDisplay(id, index = 0) {
     opt.innerText = option;
     opt.classList.add("option");
     opt.classList.add("selectable");
-    if (opt.innerText.toUpperCase() === data[id][index].answer.toUpperCase()) {
-      opt.value = 1;
-    } else {
-      opt.value = 0;
-    }
     questions.appendChild(opt);
+  }
+
+  if (Object.hasOwn(localStorage, question.uniqueID)) {
+    for (let node of questions.querySelectorAll("div")) {
+      removePointerEvents(node);
+      if (node.innerText == localStorage.getItem(question.uniqueID)) {
+        node.style.background = "#393E46";
+      }
+    }
   }
 
   topics.classList.add("hidden");
@@ -61,6 +74,14 @@ function removeAllChildren(parent) {
   while (parent.firstChild) {
     parent.removeChild(parent.firstChild);
   }
+}
+
+function removePointerEvents(element) {
+  element.style.pointerEvents = "none";
+}
+
+function addPointerEvents(element) {
+  element.style.pointerEvents = "auto";
 }
 
 function checkAllCompleted(topic) {
@@ -84,7 +105,7 @@ function score(topic) {
   let right = 0;
   for (let element of data[topic]) {
     if (Object.hasOwn(localStorage, element.id)) {
-      if (localStorage.getItem(element.id) == 1) {
+      if (localStorage.getItem(element.id) == element.answer) {
         right += 1;
       }
     }
@@ -92,7 +113,13 @@ function score(topic) {
   localStorage.setItem(topic, right);
 }
 
-function showScore(topic) {
+function showScore(element) {
+  element.innerHTML = `<s>${element.id.toUpperCase()}</s> &ensp; : &ensp; ${localStorage.getItem(
+    element.id
+  )} / ${data[element.id].length}`;
+}
+
+function showScoreCard(topic) {
   scores.querySelector("h3").id = topic;
   scores.querySelector("h3").innerHTML = `<u>${topic.toUpperCase()}</u>`;
   document.getElementById(
@@ -123,11 +150,11 @@ document.addEventListener("click", (e) => {
         option.style.background = "";
         option.selected = false;
       }
-      element.style.background = "green";
+      element.style.background = "#393E46";
       element.selected = true;
       localStorage.setItem(
         document.getElementById("question").uniqueID,
-        element.value
+        element.innerText
       );
     }
   }
@@ -143,35 +170,36 @@ document.addEventListener("click", (e) => {
   if (element.id === "next") {
     const currTopic = localStorage.getItem("topic");
     const currIndex = Number(localStorage.getItem("currentIndex"));
-    //console.log(currIndex + 1);
     if (currIndex < data[currTopic].length - 1) {
       quesDisplay(currTopic, currIndex + 1);
-    }
-
-    if (checkAllCompleted(currTopic)) {
+    } else if (checkAllCompleted(currTopic)) {
       score(currTopic);
-      showScore(currTopic);
+      showScoreCard(currTopic);
     }
   }
 
   if (element.id === "finish") {
     const currTopic = localStorage.getItem("topic");
     score(currTopic);
-    showScore(currTopic);
+    showScoreCard(currTopic);
   }
 
   if (element.id === "exit" || element.id === "back") {
     for (let child of topic.querySelectorAll("div")) {
       if (Object.hasOwn(localStorage, child.id)) {
-        child.style.pointerEvents = "none";
-        child.innerHTML = `<s>${child.id.toUpperCase()}</s> <small>Score: ${localStorage.getItem(
-          child.id
-        )} / ${data[child.id].length}</small>`;
-        //score(child.id);
+        removePointerEvents(child);
+        showScore(child);
       }
     }
+    const currTopic = localStorage.getItem("topic");
+    clearUnfinished(currTopic);
     topics.classList.remove("hidden");
     quiz.classList.add("hidden");
     scores.classList.add("hidden");
+  }
+
+  if (element.id === "reset") {
+    localStorage.clear();
+    window.location.reload();
   }
 });

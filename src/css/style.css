@@ -3,28 +3,39 @@
 * {
   font-family: "Open Sans", sans-serif;
   box-sizing: border-box;
+  color: #bbe1fa;
 }
 
 html,
 body {
   margin: 0px;
   padding: 0px;
-  background: cornflowerblue;
+  background: #1b262c;
 }
 
 #main {
   width: 100vw;
   height: 100vh;
-  margin: auto;
+  text-align: center;
 }
 
 #pop-quiz {
-  margin: auto;
-  width: 80%;
-  min-width: 300px;
   max-width: 600px;
-  text-align: center;
-  /* border: 2px solid black; */
+  width: 90%;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+hr {
+  margin: 1.5rem -1rem;
+  border: 1px solid #3282b8;
+}
+
+#quiz > hr:first-of-type {
+  margin-top: 0.5rem;
 }
 
 #navigate,
@@ -35,36 +46,29 @@ body {
   align-items: center;
 }
 
-#questions {
-  margin: 0 auto;
-}
-
-#question {
-  margin: 1rem;
+#question,
+#score {
+  margin-bottom: 1rem;
 }
 
 .option {
   border-radius: 5px;
   font-size: 1em;
-  margin: 5px 0 15px;
+  margin: 5px 0 15px 0;
   padding: 9px;
   cursor: pointer;
-  border: 2px solid #363;
-  /* border-width: 1px;
-  border-color: #bbb;
-  color: #333;
-  box-shadow: 0 2px 8px -5px; */
+  border: 2px solid #0f4c75;
+  transition: all 0.5s ease-out;
 }
 
 #num {
-  font-size: 1em;
-  margin: 5px 0 15px;
-  padding: 9px;
+  font-size: 1.2rem;
+  margin: 5px 0 15px 0;
 }
 
 div.option:hover {
-  background: #090;
-  color: #000;
+  background: #3282b8;
+  transform: scale(1.1);
 }
 
 .hidden {

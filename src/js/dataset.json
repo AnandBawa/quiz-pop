@@ -3,7 +3,12 @@
     {
       "id": 1,
       "question": "Which of the following is not a type of music notation?",
-      "options": ["Standard notation", "Tab notation", "Morse code notation", "Graphics notation"],
+      "options": [
+        "Standard notation",
+        "Tab notation",
+        "Morse code notation",
+        "Graphics notation"
+      ],
       "answer": "Morse code notation",
       "category": "music"
     },
@@ -75,7 +80,12 @@
     {
       "id": 11,
       "question": "Which artist is known for coining the term 'Surrealism'?",
-      "options": ["Pablo Picasso", "Salvador Dali", "Vincent van Gogh", "Henri Matisse"],
+      "options": [
+        "Pablo Picasso",
+        "Salvador Dali",
+        "Vincent van Gogh",
+        "Henri Matisse"
+      ],
       "answer": "Salvador Dali",
       "category": "modern-art"
     },
@@ -89,14 +99,24 @@
     {
       "id": 13,
       "question": "Which artist is known for painting the work 'The Persistence of Memory'?",
-      "options": ["Pablo Picasso", "Salvador Dali", "Vincent van Gogh", "Henri Matisse"],
+      "options": [
+        "Pablo Picasso",
+        "Salvador Dali",
+        "Vincent van Gogh",
+        "Henri Matisse"
+      ],
       "answer": "Salvador Dali",
       "category": "modern-art"
     },
     {
       "id": 14,
       "question": "Which artist is known for creating the painting 'The Scream'?",
-      "options": ["Vincent van Gogh", "Salvador Dali", "Edvard Munch", "Claude Monet"],
+      "options": [
+        "Vincent van Gogh",
+        "Salvador Dali",
+        "Edvard Munch",
+        "Claude Monet"
+      ],
       "answer": "Edvard Munch",
       "category": "modern-art"
     },
@@ -109,8 +129,13 @@
     },
     {
       "id": 16,
-      "question": "What movement was associated with the use of bright colors, simplified forms, and a focus on movement and speed",
-      "options": ["Impressionism", "Futurism", "Surrealism", "Abstract Expressionism"],
+      "question": "What movement was associated with the use of bright colors, simplified forms, and a focus on movement and speed?",
+      "options": [
+        "Impressionism",
+        "Futurism",
+        "Surrealism",
+        "Abstract Expressionism"
+      ],
       "answer": "Futurism",
       "category": "modern-art"
     },
@@ -124,21 +149,36 @@
     {
       "id": 18,
       "question": "Which artist is known for creating the painting 'Les Demoiselles d'Avignon'?",
-      "options": ["Henri Matisse", "Vincent van Gogh", "Salvador Dali", "Pablo Picasso"],
+      "options": [
+        "Henri Matisse",
+        "Vincent van Gogh",
+        "Salvador Dali",
+        "Pablo Picasso"
+      ],
       "answer": "Pablo Picasso",
       "category": "modern-art"
     },
     {
       "id": 19,
       "question": "Which artist is known for creating the painting 'Guernica'?",
-      "options": ["Claude Mone", "Paul Cezanne", "Pablo Picasso", "Vincent van Gogh"],
+      "options": [
+        "Claude Mone",
+        "Paul Cezanne",
+        "Pablo Picasso",
+        "Vincent van Gogh"
+      ],
       "answer": "Pablo Picasso",
       "category": "modern-art"
     },
     {
       "id": 20,
       "question": "Which artist is known for creating the sculpture 'The Thinker'?",
-      "options": ["Auguste Rodin", "Alexander Calder", "Jean Arp", "Henry Moore"],
+      "options": [
+        "Auguste Rodin",
+        "Alexander Calder",
+        "Jean Arp",
+        "Henry Moore"
+      ],
       "answer": "Auguste Rodin",
       "category": "modern-art"
     }
@@ -148,7 +188,12 @@
     {
       "id": 21,
       "question": "What is the correct syntax for an if statement in Python?",
-      "options": ["if (condition):", "if condition", "if: condition", "if condition:"],
+      "options": [
+        "if (condition):",
+        "if condition",
+        "if: condition",
+        "if condition:"
+      ],
       "answer": "if condition:",
       "category": "coding"
     },
@@ -169,7 +214,12 @@
     {
       "id": 24,
       "question": "What is the correct syntax for a for loop in C#?",
-      "options": ["for i = 0 to 10", "for (i = 0; i <= 10; i++)", "for (int i = 0; i <= 10)", "for i in range(0, 10)"],
+      "options": [
+        "for i = 0 to 10",
+        "for (i = 0; i <= 10; i++)",
+        "for (int i = 0; i <= 10)",
+        "for i in range(0, 10)"
+      ],
       "answer": "for (i = 0; i <= 10; i++)",
       "category": "coding"
     },
