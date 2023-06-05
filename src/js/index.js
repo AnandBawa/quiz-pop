@@ -1,11 +1,14 @@
 import data from "./dataset.json" assert { type: "json" };
 
+// assigning document elements
 const topics = document.getElementById("topics");
 const topic = document.getElementById("topic");
+const status = document.getElementById("status");
 const quiz = document.getElementById("quiz");
 const questions = document.getElementById("questions");
 const scores = document.getElementById("scores");
 
+// on page load display topics and check if topic is already attemped using localStorage
 for (const key in data) {
   const div = document.createElement("div");
   div.id = key;
@@ -21,6 +24,7 @@ for (const key in data) {
   topic.appendChild(div);
 }
 
+// function that displays/changes question
 function quesDisplay(id, index = 0) {
   localStorage.setItem("currentIndex", index);
 
@@ -41,6 +45,18 @@ function quesDisplay(id, index = 0) {
   document.getElementById("num").innerText = `${index + 1} of ${
     data[id].length
   }`;
+
+  removeAllChildren(status);
+  for (let i = 1; i <= data[id].length; i++) {
+    const div = document.createElement("div");
+    div.innerText = i;
+    div.uniqueID = data[id][i - 1].id;
+    if (Object.hasOwn(localStorage, div.uniqueID)) {
+      div.classList.add("circle-div");
+    }
+    status.appendChild(div);
+  }
+  status.style.gridTemplateColumns = `repeat(${data[id].length}, 1fr)`;
 
   removeAllChildren(questions);
   const question = document.createElement("div");
@@ -70,29 +86,24 @@ function quesDisplay(id, index = 0) {
   quiz.classList.remove("hidden");
 }
 
+// helper function to remove all child elements
 function removeAllChildren(parent) {
   while (parent.firstChild) {
     parent.removeChild(parent.firstChild);
   }
 }
 
+// function to remove pointer events
 function removePointerEvents(element) {
   element.style.pointerEvents = "none";
 }
 
+// function to add pointer events
 function addPointerEvents(element) {
   element.style.pointerEvents = "auto";
 }
 
-function checkAllCompleted(topic) {
-  for (let element of data[topic]) {
-    if (localStorage.getItem(element.id) == null) {
-      return false;
-    }
-  }
-  return true;
-}
-
+// function to clear saved data of a topic if user exits/refreshes before finishing a quiz
 function clearUnfinished(topic) {
   for (let element of data[topic]) {
     if (Object.hasOwn(localStorage, element.id)) {
@@ -101,6 +112,7 @@ function clearUnfinished(topic) {
   }
 }
 
+// function to calculate the score
 function score(topic) {
   let right = 0;
   for (let element of data[topic]) {
@@ -113,12 +125,14 @@ function score(topic) {
   localStorage.setItem(topic, right);
 }
 
+// function to show score on the main menu
 function showScore(element) {
   element.innerHTML = `<s>${element.id.toUpperCase()}</s> &ensp; : &ensp; ${localStorage.getItem(
     element.id
   )} / ${data[element.id].length}`;
 }
 
+// function to show score card after finishing a quiz
 function showScoreCard(topic) {
   scores.querySelector("h3").id = topic;
   scores.querySelector("h3").innerHTML = `<u>${topic.toUpperCase()}</u>`;
@@ -132,6 +146,7 @@ function showScoreCard(topic) {
   scores.classList.remove("hidden");
 }
 
+// click event listener for all the navigation and inputs
 document.addEventListener("click", (e) => {
   let element = e.target;
 
@@ -172,9 +187,6 @@ document.addEventListener("click", (e) => {
     const currIndex = Number(localStorage.getItem("currentIndex"));
     if (currIndex < data[currTopic].length - 1) {
       quesDisplay(currTopic, currIndex + 1);
-    } else if (checkAllCompleted(currTopic)) {
-      score(currTopic);
-      showScoreCard(currTopic);
     }
   }
 

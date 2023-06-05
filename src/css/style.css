@@ -19,6 +19,11 @@ body {
   text-align: center;
 }
 
+h2,
+h3 {
+  pointer-events: none;
+}
+
 #pop-quiz {
   max-width: 600px;
   width: 90%;
@@ -46,14 +51,33 @@ hr {
   align-items: center;
 }
 
+#status {
+  display: grid;
+  place-items: center;
+  margin: 0 -0.8rem;
+}
+
+#status > div {
+  padding-top: 0.1rem;
+  pointer-events: none;
+}
+
+.circle-div {
+  width: 26px;
+  height: 30px;
+  border-radius: 100%;
+  border: 2px solid #3282b8;
+}
+
 #question,
 #score {
   margin-bottom: 1rem;
+  pointer-events: none;
 }
 
 .option {
   border-radius: 5px;
-  font-size: 1em;
+  font-size: 1rem;
   margin: 5px 0 15px 0;
   padding: 9px;
   cursor: pointer;
@@ -64,6 +88,7 @@ hr {
 #num {
   font-size: 1.2rem;
   margin: 5px 0 15px 0;
+  pointer-events: none;
 }
 
 div.option:hover {
