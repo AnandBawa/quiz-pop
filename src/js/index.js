@@ -52,8 +52,9 @@ function quesDisplay(id, index = 0) {
     const div = document.createElement("div");
     div.innerText = i;
     div.uniqueID = data[id][i - 1].id;
+    div.classList.add("small-circle");
     if (Object.hasOwn(localStorage, div.uniqueID)) {
-      div.classList.add("small-circle");
+      // div.classList.add("small-circle");
       div.classList.add("blue");
     }
     status.appendChild(div);
@@ -203,6 +204,11 @@ document.addEventListener("click", (e) => {
     if (currIndex < data[currTopic].length - 1) {
       quesDisplay(currTopic, currIndex + 1);
     }
+  }
+
+  if (element.parentNode.id === "status") {
+    const currTopic = localStorage.getItem("topic");
+    quesDisplay(currTopic, Number(element.innerText) - 1);
   }
 
   if (element.id === "finish") {
