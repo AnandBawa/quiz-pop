@@ -98,6 +98,7 @@ hr {
   border: 2px solid #3282b8;
   border-radius: 100%;
   font-size: 1.8rem;
+  pointer-events: none;
 }
 
 #answers {
@@ -109,6 +110,7 @@ hr {
 
 #answers > div {
   padding-top: 0.05rem;
+  pointer-events: none;
 }
 
 #question,
