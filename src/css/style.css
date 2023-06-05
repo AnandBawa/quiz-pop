@@ -10,12 +10,12 @@ html,
 body {
   margin: 0px;
   padding: 0px;
+  width: 100vw;
+  min-height: 100vh;
   background: #1b262c;
 }
 
 #main {
-  width: 100vw;
-  height: 100vh;
   text-align: center;
 }
 
@@ -62,15 +62,57 @@ hr {
   pointer-events: none;
 }
 
-.circle-div {
+.small-circle {
   width: 26px;
   height: 30px;
   border-radius: 100%;
+  border: 2px solid;
+}
+
+.blue {
+  border-color: #3282b8;
+}
+
+.green {
+  border-color: lightgreen;
+}
+
+.red {
+  border-color: tomato;
+}
+
+#card {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 0 -0.6rem;
+  margin-bottom: 20px;
+}
+
+#score {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  width: 100px;
   border: 2px solid #3282b8;
+  border-radius: 100%;
+  font-size: 1.8rem;
+}
+
+#answers {
+  display: grid;
+  place-items: center;
+  gap: 5px;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+#answers > div {
+  padding-top: 0.05rem;
 }
 
 #question,
-#score {
+#report {
   margin-bottom: 1rem;
   pointer-events: none;
 }

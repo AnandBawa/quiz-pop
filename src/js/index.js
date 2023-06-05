@@ -7,6 +7,7 @@ const status = document.getElementById("status");
 const quiz = document.getElementById("quiz");
 const questions = document.getElementById("questions");
 const scores = document.getElementById("scores");
+const answers = document.getElementById("answers");
 
 // on page load display topics and check if topic is already attemped using localStorage
 for (const key in data) {
@@ -52,7 +53,8 @@ function quesDisplay(id, index = 0) {
     div.innerText = i;
     div.uniqueID = data[id][i - 1].id;
     if (Object.hasOwn(localStorage, div.uniqueID)) {
-      div.classList.add("circle-div");
+      div.classList.add("small-circle");
+      div.classList.add("blue");
     }
     status.appendChild(div);
   }
@@ -136,11 +138,24 @@ function showScore(element) {
 function showScoreCard(topic) {
   scores.querySelector("h3").id = topic;
   scores.querySelector("h3").innerHTML = `<u>${topic.toUpperCase()}</u>`;
-  document.getElementById(
-    "score"
-  ).innerText = `You scored ${localStorage.getItem(topic)} / ${
-    data[topic].length
-  }`;
+  document.getElementById("score").innerHTML = `${localStorage.getItem(
+    topic
+  )} / ${data[topic].length}`;
+
+  removeAllChildren(answers);
+  for (let i = 1; i <= data[topic].length; i++) {
+    const div = document.createElement("div");
+    div.innerText = i;
+    div.uniqueID = data[topic][i - 1].id;
+    if (localStorage.getItem(div.uniqueID) == data[topic][i - 1].answer) {
+      div.classList.add("small-circle");
+      div.classList.add("green");
+    } else {
+      div.classList.add("small-circle");
+      div.classList.add("red");
+    }
+    answers.appendChild(div);
+  }
 
   quiz.classList.add("hidden");
   scores.classList.remove("hidden");
